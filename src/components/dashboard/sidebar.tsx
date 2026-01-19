@@ -8,7 +8,7 @@ import {
   Users,
   Settings,
   LogOut,
-  ChevronDown,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useClerk } from "@clerk/nextjs";
@@ -21,19 +21,37 @@ const navItems = [
   { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
-export function Sidebar() {
+export function Sidebar({
+  open = false,
+  onClose,
+}: {
+  open?: boolean;
+  onClose?: () => void;
+}) {
   const pathname = usePathname();
   const { user } = useUser();
 
   return (
-    <aside className="w-64 border-r border-border bg-card">
-      <div className="flex h-screen flex-col">
-        {/* Logo */}
-        <div className="border-b border-border p-6">
+    <aside
+      className={`fixed inset-y-0 left-0 z-50 transform transition-transform duration-200 md:relative md:translate-x-0 w-64 border-r border-border bg-card ${
+        open ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+      }`}
+      aria-hidden={!open}
+    >
+      <div className="flex h-full flex-col">
+        <div className="border-b border-border p-4 flex items-center justify-between md:p-6">
           <h1 className="text-2xl font-bold">Dashboard</h1>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => onClose && onClose()}
+            aria-label="Close sidebar"
+          >
+            <X className="h-5 w-5" />
+          </Button>
         </div>
 
-        {/* Navigation */}
         <nav className="flex-1 space-y-2 p-4">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -55,7 +73,6 @@ export function Sidebar() {
           })}
         </nav>
 
-        {/* User Section */}
         <div className="border-t border-border p-4">
           <div className="mb-4 rounded-lg bg-muted p-4">
             <p className="text-xs text-muted-foreground">Logged in as</p>

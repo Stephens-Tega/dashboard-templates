@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   title: "Dashboard - Beautiful Analytics & Management",
   description: "Modern Next.js dashboard template with authentication, charts, and user management. Built with Next.js 16, TailwindCSS, and Clerk.",
   keywords: ["dashboard", "analytics", "management", "template", "nextjs"],
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
