@@ -4,6 +4,8 @@ import React from "react";
 import { Card } from "@/components/ui/card";
 import { BarChart, PieChart, LineChart, Line, Bar, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
+export const dynamic = "force-dynamic";
+
 const analyticsData = [
   { month: "Jan", visits: 4000, bounce: 24 },
   { month: "Feb", visits: 3000, bounce: 14 },
